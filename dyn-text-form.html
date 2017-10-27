@@ -1,15 +1,18 @@
 <link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
 
-<dom-module id="dyn-form">
+<dom-module id="dyn-element-form">
     <template>
-        Hello World from <span id="name"></span>!
+        <div>
+            <label for=""></label>
+            <text name="" id="" cols="30" rows="10"></text>
+        </div>
     </template>
  
     <script>
         // Define the class for a new element called custom-element
-        class DynFormElement extends Polymer.Element {
+        class DynElemFormElement extends Polymer.Element {
 
-            static get is() { return "dyn-form"; }
+            static get is() { return "dyn-element-form"; }
             constructor() {
                 super();
                 console.log('dyn-form constructor!');
@@ -17,21 +20,13 @@
             static get properties(){
                 console.log('dyn-form properties!');
                 return {
-                    metadata: {
+                    name: {
                     type: String
                     }
                 };
             }
-
-            ready(){
-                super.ready();
-                console.log('Meu metadado: '+this.metadata);
-                console.log("this.shadowRoot: "+this.shadowRoot);
-                let div = this.shadowRoot.createElement('div');
-                div.textContent = 'Meu metadado: '+this.metadata;
-            }
         }
         // Register the new element with the browser
-        customElements.define(DynFormElement.is, DynFormElement);
+        customElements.define(DynElemFormElement.is, DynElemFormElement);
     </script>
 </dom-module>

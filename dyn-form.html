@@ -1,8 +1,12 @@
 <link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
+<link rel="import"  href="dyn-text-form.html">
 
 <dom-module id="dyn-form">
     <template>
         Hello World from <span id="name"></span>!
+        loop it
+          <dyn-text-form name="it.name"></dyn-textfield-element>
+        endloop
     </template>
  
     <script>
@@ -27,7 +31,7 @@
                 super.ready();
                 console.log('Meu metadado: '+this.metadata);
                 console.log("this.shadowRoot: "+this.shadowRoot);
-                let div = this.shadowRoot.createElement('div');
+                let div = this.shadowRoot.createElement('dyn-element');
                 div.textContent = 'Meu metadado: '+this.metadata;
             }
         }
