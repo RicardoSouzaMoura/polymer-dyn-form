@@ -1,0 +1,37 @@
+<link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
+
+<dom-module id="dyn-form">
+    <template>
+        Hello World from <span id="name"></span>!
+    </template>
+ 
+    <script>
+        // Define the class for a new element called custom-element
+        class DynFormElement extends Polymer.Element {
+
+            static get is() { return "dyn-form"; }
+            constructor() {
+                super();
+                console.log('dyn-form constructor!');
+            }
+            static get properties(){
+                console.log('dyn-form properties!');
+                return {
+                    metadata: {
+                    type: String
+                    }
+                };
+            }
+
+            ready(){
+                super.ready();
+                console.log('Meu metadado: '+this.metadata);
+                console.log("this.shadowRoot: "+this.shadowRoot);
+                let div = this.shadowRoot.createElement('div');
+                div.textContent = 'Meu metadado: '+this.metadata;
+            }
+        }
+        // Register the new element with the browser
+        customElements.define(DynFormElement.is, DynFormElement);
+    </script>
+</dom-module>
