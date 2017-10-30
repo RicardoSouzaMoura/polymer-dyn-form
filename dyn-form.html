@@ -1,12 +1,25 @@
 <link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
-<link rel="import"  href="dyn-text-form.html">
+<! -- import template repeater -->
+<link rel="import" href="https://polygit.org/components/polymer/lib/elements/dom-repeat.html">
+<! -- import conditional template -->
+<link rel="import" href="https://polygit.org/components/polymer/lib/elements/dom-if.html">
+
+
 
 <dom-module id="dyn-form">
     <template>
-        Hello World from <span id="name"></span>!
-        loop it
-          <dyn-text-form name="it.name"></dyn-textfield-element>
-        endloop
+        <div>
+            <form action="">
+                <template is="dom-repeat" items="{{metadata.fields}}">
+                    <template is="dom-if" if="{item.type === 'text'}">
+                        <div>
+                            <label for="[[item.name]]">[[item.name]]</label>
+                            <input type="text" id="[[item.name]]" name="[[item.name]]"/>
+                        </div>
+                    </template>
+                </template>
+            </form> 
+       </div>
     </template>
  
     <script>
@@ -22,17 +35,17 @@
                 console.log('dyn-form properties!');
                 return {
                     metadata: {
-                    type: String
+                    type: Object
                     }
                 };
             }
 
             ready(){
                 super.ready();
-                console.log('Meu metadado: '+this.metadata);
-                console.log("this.shadowRoot: "+this.shadowRoot);
-                let div = this.shadowRoot.createElement('dyn-element');
-                div.textContent = 'Meu metadado: '+this.metadata;
+                console.log('Meu metadado: '+JSON.stringify(this.metadata));
+                //console.log("this.shadowRoot: "+this.shadowRoot);
+                //let div = this.shadowRoot.createElement('dyn-element');
+                //div.textContent = 'Meu metadado: '+this.metadata;
             }
         }
         // Register the new element with the browser
